@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* ============================================================
+   SLP Soluciones Informáticas — Design Constitution
+   ============================================================ */
+
+@theme inline {
+  /* Strict Palette Tokens */
+  --color-background: #FAFAFA;
+  --color-surface: #F6F7F9;
+  --color-foreground: #111827;
+  --color-card: #FFFFFF;
+  --color-card-foreground: #111827;
+  --color-popover: #FFFFFF;
+  --color-popover-foreground: #111827;
+  --color-primary: #1E4ED8;
+  --color-primary-foreground: #FFFFFF;
+  --color-secondary: #6D28D9;
+  --color-secondary-foreground: #FFFFFF;
+  --color-accent: #C8A447;
+  --color-accent-foreground: #FFFFFF;
+  --color-muted: #F6F7F9;
+  --color-muted-foreground: #6B7280;
+  --color-border: #E5E7EB;
+  --color-input: #FFFFFF;
+  --color-ring: #1E4ED8;
+  --color-destructive: #DC2626;
+  --color-success: #16A34A;
+
+  /* Typography */
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+
+  --background: #FAFAFA;
+  --surface: #F6F7F9;
+  --foreground: #111827;
+  --card: #FFFFFF;
+  --card-foreground: #111827;
+  --primary: #1E4ED8;
+  --primary-foreground: #FFFFFF;
+  --secondary: #6D28D9;
+  --secondary-foreground: #FFFFFF;
+  --accent: #C8A447;
+  --accent-foreground: #FFFFFF;
+  --muted: #F6F7F9;
+  --muted-foreground: #6B7280;
+  --border: #E5E7EB;
+  --input: #FFFFFF;
+  --ring: #1E4ED8;
+  --destructive: #DC2626;
+  --success: #16A34A;
+  --radius: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-[#E5E7EB];
+  }
+
+  html {
+    @apply scroll-smooth;
+    font-family: var(--font-sans);
+    background-color: #FAFAFA;
+    color: #111827;
+  }
+
+  body {
+    @apply bg-[#FAFAFA] text-[#111827] antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  /* 8-point grid spacing container */
+  .container-slp {
+    @apply mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  /* Strict clean cards */
+  .slp-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  .slp-card:hover {
+    transform: translateY(-4px);
+    border-color: #1E4ED8;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background-color: #1E4ED8;
+    color: #FFFFFF;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: background-color 180ms ease, opacity 180ms ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #1D4ED8;
+    opacity: 0.95;
+  }
+
+  .btn-secondary {
+    background-color: #FFFFFF;
+    color: #111827;
+    border: 1px solid #E5E7EB;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: background-color 180ms ease, border-color 180ms ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: #F6F7F9;
+    border-color: #D1D5DB;
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: #111827;
+    border-radius: 999px;
+    font-weight: 500;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+
+  .btn-ghost:hover {
+    background-color: #F6F7F9;
+    color: #1E4ED8;
+  }
+}
