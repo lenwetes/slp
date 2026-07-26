@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Search, Palette, Code2, Rocket, Headphones } from "lucide-react"
+import { Search, Palette, Code2, Rocket, Headphones, CheckCircle2, Clock } from "lucide-react"
 import { SectionTitle } from "@/components/ui/SectionTitle"
 import { processSteps } from "@/content/company"
 import type { ProcessStep } from "@/types"
@@ -31,9 +31,17 @@ function ProcessCard({
       {/* Horizontal Connector Line for Desktop */}
       {!isLast && (
         <div
-          className="absolute top-6 left-1/2 hidden h-[2px] w-full bg-[#E5E7EB] lg:block"
+          className="absolute top-6 left-1/2 hidden h-[2px] w-full bg-[#E5E7EB] lg:block overflow-hidden"
           aria-hidden="true"
-        />
+        >
+          <motion.div
+            initial={{ x: "-100%" }}
+            whileInView={{ x: "100%" }}
+            viewport={{ once: false }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="h-full w-1/2 bg-gradient-to-r from-transparent via-[#1E4ED8] to-transparent"
+          />
+        </div>
       )}
 
       <motion.div
@@ -41,16 +49,16 @@ function ProcessCard({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.18, delay: index * 0.05 }}
-        className="relative z-10 flex flex-col items-center text-center gap-4 w-full"
+        className="relative z-10 flex flex-col items-center text-center gap-4 w-full group"
       >
-        {/* Step circle */}
-        <div className="flex size-12 items-center justify-center rounded-full bg-white border-2 border-[#1E4ED8] text-[#1E4ED8] font-mono text-sm font-bold shadow-xs">
-          {step.number}
+        {/* Step circle with step number */}
+        <div className="flex size-12 items-center justify-center rounded-full bg-white border-2 border-[#1E4ED8] text-[#1E4ED8] font-mono text-sm font-bold shadow-xs group-hover:bg-[#1E4ED8] group-hover:text-white transition-colors duration-180">
+          0{step.number}
         </div>
 
-        {/* Icon & Details */}
-        <div className="slp-card p-6 flex flex-col items-center gap-2.5 w-full">
-          <div className="flex size-8 items-center justify-center rounded-md bg-[#F6F7F9] text-[#1E4ED8]">
+        {/* Step details card */}
+        <div className="slp-card p-6 flex flex-col items-center gap-3 w-full bg-white group-hover:border-[#1E4ED8] transition-colors">
+          <div className="flex size-9 items-center justify-center rounded-lg bg-[#F6F7F9] text-[#1E4ED8]">
             <Icon className="size-4" aria-hidden="true" />
           </div>
           <h3 className="font-heading text-base font-bold text-[#111827]">
@@ -78,13 +86,13 @@ export function ProcessSection() {
     <section
       id="proceso"
       aria-labelledby="process-heading"
-      className="section-padding bg-[#FAFAFA]"
+      className="section-padding bg-[#FAFAFA] relative overflow-hidden"
     >
-      <div className="container-slp">
+      <div className="container-slp relative z-10">
         <SectionTitle
           label="Nuestro Proceso"
           title="Metodología de ingeniería estructurada"
-          subtitle="Proceso transparente y disciplinado que asegura entregas a tiempo y según especificaciones aprobadas."
+          subtitle="Un flujo continuo y transparente que asegura entregas a tiempo y según especificaciones técnicas aprobadas."
           align="center"
           className="mb-16"
         />
@@ -107,11 +115,11 @@ export function ProcessSection() {
           ))}
         </ol>
 
-        {/* Note */}
+        {/* Guaranteed Timeline Note */}
         <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-[#E5E7EB] bg-[#F6F7F9] px-6 py-3 text-xs text-[#6B7280]">
-            <span className="size-2 rounded-full bg-[#16A34A]" aria-hidden="true" />
-            Entregamos un <strong className="text-[#111827]">cronograma detallado</strong> tras el análisis técnico inicial.
+          <div className="inline-flex items-center gap-3 rounded-full border border-[#E5E7EB] bg-white px-6 py-3.5 text-xs text-[#6B7280] shadow-xs">
+            <Clock className="size-4 text-[#1E4ED8]" aria-hidden="true" />
+            Entregamos un <strong className="text-[#111827]">cronograma detallado</strong> tras el análisis inicial. Sin sorpresas.
           </div>
         </div>
       </div>
