@@ -131,7 +131,7 @@ export function FooterSection() {
           </p>
 
           <p className="text-center">
-            {contactInfo.name} — {contactInfo.role}
+            Desarrollo hecho por <span className="text-gray-300 font-medium">lenwetes</span>
           </p>
 
           <button

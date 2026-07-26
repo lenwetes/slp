@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     "videovigilancia",
     "infraestructura tecnológica",
   ],
-  authors: [{ name: "Sergio Luis Pérez Contreras" }],
-  creator: "SLP Soluciones Informáticas",
+  authors: [{ name: "lenwetes" }],
+  creator: "lenwetes",
   publisher: "SLP Soluciones Informáticas",
   robots: {
     index: true,
@@ -75,8 +75,8 @@ const organizationSchema = {
   },
   founder: {
     "@type": "Person",
-    name: "Sergio Luis Pérez Contreras",
-    jobTitle: "Ingeniero de Sistemas",
+    name: "lenwetes",
+    jobTitle: "Desarrollador",
   },
 }
 

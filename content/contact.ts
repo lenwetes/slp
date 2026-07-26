@@ -5,7 +5,7 @@
 import type { ContactInfo } from "@/types"
 
 export const contactInfo: ContactInfo = {
-  name: "Sergio Luis Pérez Contreras",
+  name: "Luis Zárate",
   role: "Ingeniero de Sistemas",
   phone: "321 445 1817",
   email: "slps.soluciones.informaticas@gmail.com",
