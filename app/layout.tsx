@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter, Space_Grotesk } from "next/font/google"
+import { Inter, Montserrat } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({
@@ -8,13 +8,15 @@ const inter = Inter({
   display: "swap",
 })
 
-const spaceGrotesk = Space_Grotesk({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  weight: ["600", "700", "800", "900"],
+  variable: "--font-montserrat",
   display: "swap",
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://slpsoluciones.com"),
   title: {
     default: "SLP Soluciones Informáticas | Ingeniería y Soluciones Tecnológicas",
     template: "%s | SLP Soluciones Informáticas",
@@ -44,6 +46,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: "/logos/slp-logo.png",
+    shortcut: "/logos/slp-logo.png",
+    apple: "/logos/slp-logo.png",
+  },
   openGraph: {
     type: "website",
     locale: "es_CO",
@@ -51,12 +58,21 @@ export const metadata: Metadata = {
     description:
       "Desarrollo de software, IA empresarial, redes, videovigilancia e infraestructura de TI.",
     siteName: "SLP Soluciones Informáticas",
+    images: [
+      {
+        url: "/logos/slp-logo.png",
+        width: 800,
+        height: 600,
+        alt: "SLP Soluciones Informáticas Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "SLP Soluciones Informáticas",
     description:
       "Desarrollo de software a medida, IA, infraestructura de TI y soporte especializado.",
+    images: ["/logos/slp-logo.png"],
   },
 }
 
@@ -64,6 +80,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "SLP Soluciones Informáticas",
+  logo: "https://slp-soluciones.com/logos/slp-logo.png",
   description:
     "Empresa especializada en soluciones tecnológicas de ingeniería: desarrollo de software, IA empresarial, redes LAN/WLAN, videovigilancia e infraestructura.",
   contactPoint: {
@@ -86,14 +103,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="es" className={`${inter.variable} ${montserrat.variable} dark`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="antialiased bg-[#FAFAFA] text-[#111827]">{children}</body>
+      <body className="antialiased bg-[#050816] text-[#FFFFFF] selection:bg-[#1E88E5]/20 selection:text-[#18C7E7]">
+        {children}
+      </body>
     </html>
   )
 }

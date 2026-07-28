@@ -1,6 +1,7 @@
 "use client"
 
-import { Phone, Mail, Cpu, ArrowUp } from "lucide-react"
+import Image from "next/image"
+import { Phone, Mail, ArrowUp } from "lucide-react"
 import { companyContent } from "@/content/company"
 import { contactInfo } from "@/content/contact"
 
@@ -34,7 +35,7 @@ export function FooterSection() {
   return (
     <footer
       role="contentinfo"
-      className="bg-[#111827] text-white border-t border-gray-800"
+      className="bg-[#050816] text-[#FFFFFF] border-t border-[#27304F]"
     >
       <div className="container-slp">
         {/* Main Footer Content */}
@@ -44,41 +45,37 @@ export function FooterSection() {
           <div className="flex flex-col gap-5 lg:col-span-2">
             <a
               href="#inicio"
-              className="flex items-center gap-3 w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8] rounded-md"
+              className="flex items-center w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5] rounded-md"
               aria-label="SLP Soluciones Informáticas — Ir al inicio"
             >
-              <div className="flex size-9 items-center justify-center rounded-lg bg-[#1E4ED8] text-white">
-                <Cpu className="size-5" aria-hidden="true" />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-heading text-base font-bold text-white tracking-tight">
-                  SLP
-                </span>
-                <span className="text-[10px] text-gray-400 font-medium tracking-wider uppercase">
-                  Soluciones Informáticas
-                </span>
-              </div>
+              <Image
+                src="/logos/slp-logo.png"
+                alt="SLP Soluciones Informáticas"
+                width={580}
+                height={170}
+                className="h-28 sm:h-32 md:h-36 lg:h-40 w-auto object-contain max-w-[420px] sm:max-w-[520px] md:max-w-[580px] transition-transform duration-200 hover:scale-[1.02]"
+              />
             </a>
 
-            <p className="text-sm text-gray-400 leading-relaxed max-w-sm font-normal">
+            <p className="text-sm text-[#D8DCE8] leading-relaxed max-w-sm font-normal">
               Empresa especializada en soluciones tecnológicas integrales de ingeniería. Desarrollamos software, infraestructura y soporte profesional para empresas.
             </p>
 
             <div className="flex flex-col gap-3 pt-2">
               <a
                 href={`tel:+57${contactInfo.phone.replace(/\s/g, "")}`}
-                className="flex items-center gap-2.5 text-sm text-gray-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8]"
+                className="flex items-center gap-2.5 text-sm text-[#D8DCE8] hover:text-[#18C7E7] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5]"
                 aria-label={`Teléfono: ${contactInfo.phone}`}
               >
-                <Phone className="size-4 text-[#1E4ED8]" aria-hidden="true" />
+                <Phone className="size-4 text-[#18C7E7]" aria-hidden="true" />
                 {contactInfo.phone}
               </a>
               <a
                 href={`mailto:${contactInfo.email}`}
-                className="flex items-center gap-2.5 text-sm text-gray-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8]"
+                className="flex items-center gap-2.5 text-sm text-[#D8DCE8] hover:text-[#18C7E7] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5]"
                 aria-label={`Email: ${contactInfo.email}`}
               >
-                <Mail className="size-4 text-[#1E4ED8]" aria-hidden="true" />
+                <Mail className="size-4 text-[#18C7E7]" aria-hidden="true" />
                 {contactInfo.email}
               </a>
             </div>
@@ -86,7 +83,7 @@ export function FooterSection() {
 
           {/* Column 3: Navigation */}
           <nav aria-label="Navegación del pie de página">
-            <h2 className="font-heading text-xs font-bold text-white uppercase tracking-wider mb-5">
+            <h2 className="font-heading text-xs font-bold text-[#FFFFFF] uppercase tracking-wider mb-5">
               Navegación
             </h2>
             <ul className="flex flex-col gap-2.5" role="list">
@@ -94,7 +91,7 @@ export function FooterSection() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8]"
+                    className="text-sm text-[#D8DCE8] hover:text-[#18C7E7] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5]"
                   >
                     {link.label}
                   </a>
@@ -105,7 +102,7 @@ export function FooterSection() {
 
           {/* Column 4: Services */}
           <div>
-            <h2 className="font-heading text-xs font-bold text-white uppercase tracking-wider mb-5">
+            <h2 className="font-heading text-xs font-bold text-[#FFFFFF] uppercase tracking-wider mb-5">
               Servicios
             </h2>
             <ul className="flex flex-col gap-2.5" role="list">
@@ -113,7 +110,7 @@ export function FooterSection() {
                 <li key={service}>
                   <a
                     href="#servicios"
-                    className="text-sm text-gray-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8]"
+                    className="text-sm text-[#D8DCE8] hover:text-[#18C7E7] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5]"
                   >
                     {service}
                   </a>
@@ -125,20 +122,20 @@ export function FooterSection() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-800 py-6 text-xs text-gray-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-[#27304F] py-6 text-xs text-[#95A0C0]">
           <p className="text-center sm:text-left">
             © {currentYear} {companyContent.name}. Todos los derechos reservados.
           </p>
 
           <p className="text-center">
-            Desarrollo hecho por <span className="text-gray-300 font-medium">lenwetes</span>
+            Desarrollo hecho por <span className="text-[#FFFFFF] font-medium">lenwetes</span>
           </p>
 
           <button
             type="button"
             onClick={scrollToTop}
             aria-label="Volver al inicio de la página"
-            className="flex size-8 items-center justify-center rounded-full border border-gray-700 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8]"
+            className="flex size-8 items-center justify-center rounded-full border border-[#27304F] bg-[#12182D] text-[#D8DCE8] hover:bg-[#1B2340] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5]"
           >
             <ArrowUp className="size-4" aria-hidden="true" />
           </button>

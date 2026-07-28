@@ -3,89 +3,138 @@
 @import "shadcn/tailwind.css";
 
 /* ============================================================
-   SLP Soluciones Informáticas — Design System
+   SLP Soluciones Informáticas — Identidad Visual Oficial SLP
    ============================================================ */
 
 @theme inline {
-  /* Strict Palette Tokens */
-  --color-background: #FAFAFA;
-  --color-surface: #F6F7F9;
-  --color-foreground: #111827;
-  --color-card: #FFFFFF;
-  --color-card-foreground: #111827;
-  --color-popover: #FFFFFF;
-  --color-popover-foreground: #111827;
-  --color-primary: #1E4ED8;
-  --color-primary-foreground: #FFFFFF;
-  --color-secondary: #6D28D9;
-  --color-secondary-foreground: #FFFFFF;
-  --color-accent: #C8A447;
-  --color-accent-foreground: #FFFFFF;
-  --color-muted: #F6F7F9;
-  --color-muted-foreground: #6B7280;
-  --color-border: #E5E7EB;
-  --color-input: #FFFFFF;
-  --color-ring: #1E4ED8;
-  --color-destructive: #DC2626;
-  --color-success: #16A34A;
+  --color-background: #050816;
+  --color-background-secondary: #0B1022;
+  --color-surface: #12182D;
+  --color-surface-hover: #1B2340;
+  --color-border: #27304F;
+  --color-foreground: #FFFFFF;
+  --color-card: #12182D;
+  --color-card-foreground: #FFFFFF;
+
+  /* Paleta Oficial */
+  --color-slp-purple: #6A2DBD;
+  --color-slp-blue: #1E88E5;
+  --color-slp-cyan: #18C7E7;
+  --color-slp-gold: #D9A441;
+  --color-slp-gold-light: #F0C96A;
+  --color-slp-gold-bright: #FFE4A3;
+
+  /* Jerarquía de Texto */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #D8DCE8;
+  --color-text-muted: #95A0C0;
+  --color-text-disabled: #66708E;
+
+  /* System UI mapping */
+  --color-primary: #1E88E5;
+  --color-muted: #12182D;
+  --color-muted-foreground: #95A0C0;
 
   /* Typography */
   --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-heading: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), var(--font-inter), system-ui, sans-serif;
 }
 
 :root {
-  color-scheme: light;
-
-  --background: #FAFAFA;
-  --surface: #F6F7F9;
-  --foreground: #111827;
-  --card: #FFFFFF;
-  --card-foreground: #111827;
-  --primary: #1E4ED8;
-  --primary-foreground: #FFFFFF;
-  --secondary: #6D28D9;
-  --secondary-foreground: #FFFFFF;
-  --accent: #C8A447;
-  --accent-foreground: #FFFFFF;
-  --muted: #F6F7F9;
-  --muted-foreground: #6B7280;
-  --border: #E5E7EB;
-  --input: #FFFFFF;
-  --ring: #1E4ED8;
-  --destructive: #DC2626;
-  --success: #16A34A;
-  --radius: 1rem;
+  color-scheme: dark;
+  --background: #050816;
+  --foreground: #FFFFFF;
+  --radius: 1.25rem; /* 20px */
 }
 
 @layer base {
   * {
-    @apply border-[#E5E7EB];
+    @apply border-[#27304F];
   }
 
   html {
     @apply scroll-smooth;
     font-family: var(--font-sans);
-    background-color: #FAFAFA;
-    color: #111827;
+    background-color: #050816;
+    color: #FFFFFF;
   }
 
   body {
-    @apply bg-[#FAFAFA] text-[#111827] antialiased selection:bg-[#1E4ED8]/15 selection:text-[#1E4ED8];
+    @apply bg-[#050816] text-[#FFFFFF] antialiased selection:bg-[#1E88E5]/25 selection:text-[#18C7E7];
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    letter-spacing: -0.025em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
   }
 }
 
-/* Custom Keyframes */
+/* Custom Keyframes & Motion */
 @keyframes live-ping {
-  75%, 100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
+  0% { transform: scale(1); opacity: 0.75; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.04); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float-a {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes float-b {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  33% { transform: translateY(-5px) translateX(2px); }
+  66% { transform: translateY(-2px) translateX(-3px); }
+}
+
+@keyframes float-c {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(5px); }
+}
+
+@keyframes shine-move {
+  0% { left: -120%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { left: 200%; opacity: 0; }
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes cctv-scan {
+  0% { top: 0%; opacity: 0.8; }
+  50% { opacity: 0.4; }
+  100% { top: 100%; opacity: 0.8; }
+}
+
+@keyframes network-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.6); opacity: 0.2; }
+}
+
+@keyframes progress-timer {
+  0% { width: 0%; }
+  100% { width: 100%; }
 }
 
 /* Custom Background Patterns & Visual Accents */
@@ -98,115 +147,117 @@
     @apply py-20 md:py-28;
   }
 
-  /* Refined Tech Grid Pattern */
+  /* Grid discreto en fondos oscuros */
   .bg-tech-grid {
-    background-size: 32px 32px;
+    background-size: 40px 40px;
     background-image: 
-      linear-gradient(to right, rgba(229, 231, 235, 0.5) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(229, 231, 235, 0.5) 1px, transparent 1px);
+      linear-gradient(to right, rgba(39, 48, 79, 0.35) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(39, 48, 79, 0.35) 1px, transparent 1px);
   }
 
-  /* Dot Matrix Pattern */
   .bg-dot-matrix {
-    background-image: radial-gradient(rgba(30, 78, 216, 0.12) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-image: radial-gradient(rgba(24, 199, 231, 0.15) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
   }
 
-  /* Gradient Text */
-  .text-gradient-primary {
-    background: linear-gradient(135deg, #1E4ED8 0%, #6D28D9 100%);
+  /* Gradiente Oficial Inmodificable: #6A2DBD -> #1E88E5 -> #18C7E7 -> #D9A441 */
+  .text-gradient-vibrant,
+  .text-gradient-slp {
+    background: linear-gradient(135deg, #6A2DBD 0%, #1E88E5 33%, #18C7E7 66%, #D9A441 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .bg-gradient-slp-official {
+    background: linear-gradient(135deg, #6A2DBD 0%, #1E88E5 33%, #18C7E7 66%, #D9A441 100%);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #D9A441 0%, #F0C96A 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  .text-gradient-blue {
-    background: linear-gradient(135deg, #1E4ED8 0%, #2563EB 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Rich Card System */
+  /* Tarjeta Oficial (Cards) */
   .slp-card {
-    background-color: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 16px;
-    transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.02), 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+    background-color: #12182D;
+    border: 1px solid #27304F;
+    border-radius: 20px;
+    padding: 1.75rem;
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px -2px rgba(5, 8, 22, 0.5);
   }
 
   .slp-card:hover {
-    transform: translateY(-4px);
-    border-color: #1E4ED8;
-    box-shadow: 0 12px 30px -10px rgba(30, 78, 216, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+    transform: translateY(-5px);
+    border-color: #1E88E5;
+    background-color: #1B2340;
+    box-shadow: 0 16px 32px -8px rgba(30, 136, 229, 0.2);
   }
 
-  .slp-card-interactive {
-    background-color: #FFFFFF;
-    border: 1px solid #E5E7EB;
-    border-radius: 16px;
-    transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .slp-card-interactive:hover {
-    border-color: #1E4ED8;
-    box-shadow: 0 8px 24px -6px rgba(30, 78, 216, 0.1);
-  }
-
-  /* Buttons */
+  /* Botón Primario: Gradiente oficial, texto blanco, radius 14px, hover con brillo y ligera elevación */
   .btn-primary {
-    background-color: #1E4ED8;
+    background: linear-gradient(135deg, #6A2DBD 0%, #1E88E5 33%, #18C7E7 66%, #D9A441 100%);
+    background-size: 180% auto;
     color: #FFFFFF;
-    border-radius: 9999px;
+    border-radius: 14px;
     font-weight: 600;
-    transition: all 180ms ease-out;
-    box-shadow: 0 2px 8px rgba(30, 78, 216, 0.25);
+    transition: all 220ms ease-out;
+    box-shadow: 0 4px 14px rgba(30, 136, 229, 0.25);
   }
 
   .btn-primary:hover {
-    background-color: #1D4ED8;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(30, 78, 216, 0.35);
+    transform: translateY(-2px);
+    background-position: 100% 0;
+    box-shadow: 0 8px 24px rgba(24, 199, 231, 0.35);
   }
 
+  /* Botón Secundario: Transparent, border azul #1E88E5, hover azul */
   .btn-secondary {
-    background-color: #FFFFFF;
-    color: #111827;
-    border: 1px solid #E5E7EB;
-    border-radius: 9999px;
+    background-color: transparent;
+    color: #1E88E5;
+    border: 1px solid #1E88E5;
+    border-radius: 14px;
     font-weight: 600;
-    transition: all 180ms ease-out;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: all 200ms ease-out;
   }
 
   .btn-secondary:hover {
-    background-color: #F6F7F9;
-    border-color: #D1D5DB;
-    transform: translateY(-1px);
+    background-color: rgba(30, 136, 229, 0.12);
+    color: #18C7E7;
+    border-color: #18C7E7;
+    transform: translateY(-2px);
   }
 
-  .btn-ghost {
-    background-color: transparent;
-    color: #111827;
-    border-radius: 9999px;
-    font-weight: 500;
-    transition: all 180ms ease-out;
+  /* Botón Premium: Negro (#050816), border dorado (#D9A441), texto dorado, hover fondo dorado y texto negro (#050816) */
+  .btn-premium {
+    background-color: #050816;
+    color: #D9A441;
+    border: 1px solid #D9A441;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: all 200ms ease-out;
   }
 
-  .btn-ghost:hover {
-    background-color: #F6F7F9;
-    color: #1E4ED8;
+  .btn-premium:hover {
+    background-color: #D9A441;
+    color: #050816;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(217, 164, 65, 0.3);
   }
 
-  /* Live Pulse Marker */
+  /* Dot indicador */
   .live-dot {
     position: relative;
     display: inline-flex;
     height: 8px;
     width: 8px;
     border-radius: 50%;
-    background-color: #16A34A;
+    background-color: #18C7E7;
   }
 
   .live-dot::after {
@@ -214,7 +265,108 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background-color: #16A34A;
+    background-color: #18C7E7;
     animation: live-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* ── Hero Premium Components ── */
+
+  .animate-float-a {
+    animation: float-a 4s ease-in-out infinite;
+  }
+
+  .animate-float-b {
+    animation: float-b 5.2s ease-in-out infinite;
+  }
+
+  .animate-float-c {
+    animation: float-c 3.6s ease-in-out infinite;
+  }
+
+  .glass-chip {
+    background: rgba(13, 20, 40, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(39, 48, 79, 0.65);
+    border-radius: 20px;
+    padding: 5px 12px;
+    box-shadow: 0 4px 20px rgba(5, 8, 22, 0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  /* Hero Primary CTA — Gradient + shine + glow */
+  .btn-hero-primary {
+    background: linear-gradient(135deg, #6A2DBD 0%, #1E88E5 40%, #18C7E7 80%, #D9A441 100%);
+    background-size: 220% auto;
+    color: #FFFFFF;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow:
+      0 4px 20px rgba(30, 136, 229, 0.3),
+      0 0 0 1px rgba(24, 199, 231, 0.12),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+
+  .btn-hero-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    background-position: right center;
+    box-shadow:
+      0 10px 36px rgba(24, 199, 231, 0.45),
+      0 0 0 1px rgba(24, 199, 231, 0.4),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+
+  .btn-hero-primary:active {
+    transform: translateY(0px) scale(0.99);
+  }
+
+  /* Shine overlay for hero primary button */
+  .shine-overlay {
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+    transform: skewX(-18deg);
+    animation: shine-move 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Hero Secondary CTA — Glass outline */
+  .btn-hero-secondary {
+    background-color: rgba(5, 8, 22, 0.5);
+    color: #D8DCE8;
+    border: 1px solid rgba(30, 136, 229, 0.38);
+    border-radius: 14px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .btn-hero-secondary:hover {
+    background-color: rgba(30, 136, 229, 0.1);
+    border-color: rgba(24, 199, 231, 0.55);
+    color: #18C7E7;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(30, 136, 229, 0.18), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+
+  .btn-hero-secondary:active {
+    transform: translateY(0px);
+  }
+
+  /* Marquee scroll for tech strip */
+  .marquee-track {
+    animation: marquee-scroll 28s linear infinite;
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
   }
 }

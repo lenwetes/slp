@@ -34,14 +34,14 @@ function BlogCard({ category, index }: { category: BlogCategory; index: number }
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.18, delay: index * 0.04 }}
-      className="slp-card p-8 flex flex-col gap-5 bg-white group cursor-pointer relative overflow-hidden"
+      className="slp-card p-8 flex flex-col gap-5 bg-[#12182D] border border-[#27304F] rounded-[20px] hover:border-[#1E88E5] hover:bg-[#1B2340] transition-all duration-200 group cursor-pointer relative overflow-hidden"
       aria-labelledby={`blog-cat-${category.id}`}
     >
       <div className="flex items-center justify-between">
-        <div className="flex size-11 items-center justify-center rounded-xl bg-[#F6F7F9] text-[#1E4ED8] border border-[#E5E7EB] group-hover:bg-[#1E4ED8] group-hover:text-white transition-colors duration-180">
+        <div className="flex size-11 items-center justify-center rounded-xl bg-[#050816] text-[#18C7E7] border border-[#27304F] group-hover:bg-[#1E88E5] group-hover:text-white transition-colors duration-180">
           <Icon className="size-5" aria-hidden="true" />
         </div>
-        <span className="text-[11px] font-mono text-[#1E4ED8] bg-[#1E4ED8]/10 px-2.5 py-0.5 rounded-full font-semibold">
+        <span className="text-[11px] font-mono text-[#18C7E7] bg-[#1E88E5]/15 px-2.5 py-0.5 rounded-full font-semibold border border-[#1E88E5]/30">
           Categoría
         </span>
       </div>
@@ -49,18 +49,18 @@ function BlogCard({ category, index }: { category: BlogCategory; index: number }
       <div className="flex flex-col gap-2">
         <h3
           id={`blog-cat-${category.id}`}
-          className="font-heading text-lg font-bold text-[#111827] group-hover:text-[#1E4ED8] transition-colors"
+          className="font-heading text-lg font-bold text-[#FFFFFF] group-hover:text-[#18C7E7] transition-colors"
         >
           {category.title}
         </h3>
-        <p className="text-sm text-[#6B7280] leading-relaxed font-normal">
+        <p className="text-sm text-[#D8DCE8] leading-relaxed font-normal">
           {category.description}
         </p>
       </div>
 
-      <div className="flex items-center justify-between text-xs font-semibold text-[#1E4ED8] mt-auto pt-4 border-t border-[#E5E7EB]">
-        <span className="flex items-center gap-1.5 text-[#6B7280] font-normal text-[11px]">
-          <Clock className="size-3 text-[#1E4ED8]" />
+      <div className="flex items-center justify-between text-xs font-semibold text-[#18C7E7] mt-auto pt-4 border-t border-[#27304F]">
+        <span className="flex items-center gap-1.5 text-[#95A0C0] font-normal text-[11px]">
+          <Clock className="size-3 text-[#18C7E7]" />
           Guías Técnicas
         </span>
         <span className="flex items-center gap-1 group-hover:translate-x-1 transition-transform">
@@ -77,7 +77,7 @@ export function BlogSection() {
     <section
       id="blog"
       aria-labelledby="blog-heading"
-      className="section-padding bg-[#FAFAFA] relative overflow-hidden"
+      className="section-padding bg-[#050816] relative overflow-hidden"
     >
       <div className="container-slp relative z-10">
         <SectionTitle
@@ -95,9 +95,9 @@ export function BlogSection() {
         </div>
 
         {/* Note */}
-        <div className="mt-12 text-center text-xs text-[#6B7280]">
+        <div className="mt-12 text-center text-xs text-[#95A0C0]">
           <span className="inline-flex items-center gap-1.5">
-            <BookOpen className="size-3.5 text-[#1E4ED8]" />
+            <BookOpen className="size-3.5 text-[#18C7E7]" />
             Próximamente: Publicación semanal de artículos técnicos y casos de éxito.
           </span>
         </div>

@@ -46,25 +46,25 @@ function InputField({
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-sm font-semibold text-[#111827]">
+      <label htmlFor={id} className="text-sm font-semibold text-[#FFFFFF]">
         {label}
-        {props.required && <span className="text-[#DC2626] ml-1" aria-label="requerido">*</span>}
+        {props.required && <span className="text-[#F0C96A] ml-1" aria-label="requerido">*</span>}
       </label>
       <div className="relative">
         <Icon
-          className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-[#6B7280]"
+          className="absolute left-3.5 top-1/2 -translate-y-1/2 size-4 text-[#95A0C0]"
           aria-hidden="true"
         />
         <input
           id={id}
-          className={`w-full rounded-xl border bg-white py-3 pl-10 pr-4 text-sm text-[#111827] placeholder:text-[#6B7280]/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8] ${
-            error ? "border-[#DC2626]" : "border-[#E5E7EB] hover:border-[#D1D5DB]"
+          className={`w-full rounded-xl border bg-[#050816] py-3 pl-10 pr-4 text-sm text-[#FFFFFF] placeholder:text-[#95A0C0]/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5] ${
+            error ? "border-rose-500" : "border-[#27304F] hover:border-[#1E88E5]"
           }`}
           {...props}
         />
       </div>
       {error && (
-        <p className="text-xs text-[#DC2626]" role="alert" aria-live="polite">
+        <p className="text-xs text-rose-400" role="alert" aria-live="polite">
           {error}
         </p>
       )}
@@ -94,7 +94,7 @@ export function ContactSection() {
     <section
       id="contacto"
       aria-labelledby="contact-heading"
-      className="section-padding bg-[#F6F7F9] border-t border-[#E5E7EB]"
+      className="section-padding bg-[#050816] border-t border-[#27304F]"
     >
       <div className="container-slp">
         <SectionTitle
@@ -109,57 +109,57 @@ export function ContactSection() {
           
           {/* Left Column: Direct Info (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
-            <div className="slp-card p-8 bg-white flex flex-col gap-6">
+            <div className="slp-card p-8 bg-[#12182D] border border-[#27304F] rounded-[20px] flex flex-col gap-6">
               <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#1E4ED8]">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#18C7E7]">
                   Responsable Técnico
                 </span>
-                <h3 className="font-heading text-xl font-bold text-[#111827] mt-1">
+                <h3 className="font-heading text-xl font-bold text-[#FFFFFF] mt-1">
                   {contactInfo.name}
                 </h3>
-                <p className="text-sm text-[#6B7280]">{contactInfo.role}</p>
+                <p className="text-sm text-[#D8DCE8]">{contactInfo.role}</p>
               </div>
 
-              <div className="flex flex-col gap-4 pt-2 border-t border-[#E5E7EB]">
+              <div className="flex flex-col gap-4 pt-2 border-t border-[#27304F]">
                 <a
                   href={`tel:+57${contactInfo.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-[#E5E7EB] hover:border-[#1E4ED8] bg-[#F6F7F9] transition-colors"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-[#27304F] hover:border-[#1E88E5] bg-[#050816] transition-colors"
                   aria-label={`Llamar al ${contactInfo.phone}`}
                 >
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#1E4ED8] border border-[#E5E7EB]">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[#12182D] text-[#18C7E7] border border-[#27304F]">
                     <Phone className="size-5" aria-hidden="true" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase font-mono text-[#6B7280]">Teléfono directo</span>
-                    <p className="text-sm font-bold text-[#111827]">{contactInfo.phone}</p>
+                    <span className="text-[10px] uppercase font-mono text-[#95A0C0]">Teléfono directo</span>
+                    <p className="text-sm font-bold text-[#FFFFFF]">{contactInfo.phone}</p>
                   </div>
                 </a>
 
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-[#E5E7EB] hover:border-[#1E4ED8] bg-[#F6F7F9] transition-colors"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-[#27304F] hover:border-[#1E88E5] bg-[#050816] transition-colors"
                   aria-label={`Enviar correo a ${contactInfo.email}`}
                 >
-                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-white text-[#1E4ED8] border border-[#E5E7EB]">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-[#12182D] text-[#18C7E7] border border-[#27304F]">
                     <Mail className="size-5" aria-hidden="true" />
                   </div>
                   <div className="min-w-0">
-                    <span className="text-[10px] uppercase font-mono text-[#6B7280]">Correo oficial</span>
-                    <p className="text-sm font-bold text-[#111827] truncate">{contactInfo.email}</p>
+                    <span className="text-[10px] uppercase font-mono text-[#95A0C0]">Correo oficial</span>
+                    <p className="text-sm font-bold text-[#FFFFFF] truncate">{contactInfo.email}</p>
                   </div>
                 </a>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-[#E5E7EB] bg-white p-6 text-xs text-[#6B7280] leading-relaxed">
-              <strong className="text-[#111827] block mb-1">Horarios de Atención:</strong>
+            <div className="rounded-[20px] border border-[#27304F] bg-[#12182D] p-6 text-xs text-[#D8DCE8] leading-relaxed">
+              <strong className="text-[#FFFFFF] block mb-1">Horarios de Atención:</strong>
               Atención presencial y remota de lunes a sábado. Respuestas a requerimientos en menos de 24 horas hábiles.
             </div>
           </div>
 
           {/* Right Column: Contact Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="slp-card p-8 bg-white">
+            <div className="slp-card p-8 bg-[#12182D] border border-[#27304F] rounded-[20px]">
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -167,19 +167,19 @@ export function ContactSection() {
                   transition={{ duration: 0.18 }}
                   className="flex flex-col items-center gap-4 py-12 text-center"
                 >
-                  <div className="flex size-14 items-center justify-center rounded-full bg-[#16A34A]/10 text-[#16A34A]">
+                  <div className="flex size-14 items-center justify-center rounded-full bg-[#18C7E7]/15 text-[#18C7E7]">
                     <CheckCircle2 className="size-8" aria-hidden="true" />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-[#111827]">
+                  <h3 className="font-heading text-xl font-bold text-[#FFFFFF]">
                     ¡Mensaje recibido correctamente!
                   </h3>
-                  <p className="text-sm text-[#6B7280] max-w-md">
+                  <p className="text-sm text-[#D8DCE8] max-w-md">
                     {contactFormConfig.successMessage}
                   </p>
                   <button
                     type="button"
                     onClick={() => setIsSubmitted(false)}
-                    className="text-sm font-semibold text-[#1E4ED8] hover:underline mt-2"
+                    className="text-sm font-semibold text-[#18C7E7] hover:underline mt-2"
                   >
                     Enviar otro mensaje
                   </button>
@@ -238,28 +238,28 @@ export function ContactSection() {
                   </div>
 
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="contact-message" className="text-sm font-semibold text-[#111827]">
+                    <label htmlFor="contact-message" className="text-sm font-semibold text-[#FFFFFF]">
                       {contactFormConfig.fields.message.label}
-                      <span className="text-[#DC2626] ml-1" aria-label="requerido">*</span>
+                      <span className="text-[#F0C96A] ml-1" aria-label="requerido">*</span>
                     </label>
                     <div className="relative">
                       <MessageSquare
-                        className="absolute left-3.5 top-3.5 size-4 text-[#6B7280]"
+                        className="absolute left-3.5 top-3.5 size-4 text-[#95A0C0]"
                         aria-hidden="true"
                       />
                       <textarea
                         id="contact-message"
                         rows={5}
                         placeholder={contactFormConfig.fields.message.placeholder}
-                        className={`w-full rounded-xl border bg-white py-3 pl-10 pr-4 text-sm text-[#111827] placeholder:text-[#6B7280]/60 transition-colors resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8] ${
-                          errors.message ? "border-[#DC2626]" : "border-[#E5E7EB] hover:border-[#D1D5DB]"
+                        className={`w-full rounded-xl border bg-[#050816] py-3 pl-10 pr-4 text-sm text-[#FFFFFF] placeholder:text-[#95A0C0]/60 transition-colors resize-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5] ${
+                          errors.message ? "border-rose-500" : "border-[#27304F] hover:border-[#1E88E5]"
                         }`}
                         aria-required="true"
                         {...register("message")}
                       />
                     </div>
                     {errors.message && (
-                      <p className="text-xs text-[#DC2626]" role="alert" aria-live="polite">
+                      <p className="text-xs text-rose-400" role="alert" aria-live="polite">
                         {errors.message.message}
                       </p>
                     )}
@@ -269,7 +269,7 @@ export function ContactSection() {
                     type="submit"
                     id="contact-submit"
                     disabled={isSubmitting}
-                    className="btn-primary flex w-full items-center justify-center gap-2 py-3.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E4ED8]"
+                    className="btn-primary flex w-full items-center justify-center gap-2 py-3.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1E88E5]"
                   >
                     {isSubmitting ? (
                       <>

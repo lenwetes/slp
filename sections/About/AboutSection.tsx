@@ -1,16 +1,99 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Target, Eye, CheckCircle2, Award, ShieldCheck, Zap, Activity } from "lucide-react"
+import Image from "next/image"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+import {
+  Target,
+  Eye,
+  CheckCircle2,
+  ShieldCheck,
+  Activity,
+  Sparkles,
+  ArrowRight,
+  Zap,
+  TrendingUp,
+  Globe,
+  Clock,
+  Award,
+} from "lucide-react"
 import { SectionTitle } from "@/components/ui/SectionTitle"
 import { companyContent } from "@/content/company"
 
+/* ---------- Animated Counter ---------- */
+function AnimatedCounter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-80px" })
+
+  return (
+    <motion.span
+      ref={ref}
+      className="font-heading text-4xl lg:text-5xl font-black text-[#FFFFFF]"
+      initial={{ opacity: 0, y: 12 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
+      {isInView ? (
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          {value}
+          {suffix}
+        </motion.span>
+      ) : (
+        "0"
+      )}
+    </motion.span>
+  )
+}
+
+/* ---------- Capability data ---------- */
 const capabilities = [
-  { name: "Desarrollo de Software & Web", value: 98 },
-  { name: "Inteligencia Artificial & Chatbots", value: 95 },
-  { name: "Redes & Infraestructura LAN/WLAN", value: 96 },
-  { name: "Sistemas de Videovigilancia IP", value: 99 },
+  { name: "Desarrollo de Software & Web", value: 98, color: "from-[#6A2DBD] to-[#1E88E5]" },
+  { name: "Inteligencia Artificial & Chatbots", value: 95, color: "from-[#1E88E5] to-[#18C7E7]" },
+  { name: "Redes & Infraestructura LAN/WLAN", value: 96, color: "from-[#18C7E7] to-[#1E88E5]" },
+  { name: "Sistemas de Videovigilancia IP", value: 99, color: "from-[#D9A441] to-[#F0C96A]" },
 ]
+
+/* ---------- Stats data ---------- */
+const stats = [
+  { value: 100, suffix: "%", label: "Garantía en Proyectos", color: "text-[#1E88E5]", icon: ShieldCheck },
+  { value: 7, suffix: "+", label: "Áreas Tecnológicas", color: "text-[#18C7E7]", icon: Globe },
+  { value: 24, suffix: "/7", label: "Soporte Continuo", color: "text-[#6A2DBD]", icon: Clock },
+  { value: 100, suffix: "%", label: "Clientes Satisfechos", color: "text-[#D9A441]", icon: Award },
+]
+
+/* ---------- Stagger animation variants ---------- */
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+}
+
+const scaleInVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as const },
+  },
+}
 
 export function AboutSection() {
   const { about, mission, vision } = companyContent
@@ -19,160 +102,316 @@ export function AboutSection() {
     <section
       id="nosotros"
       aria-labelledby="about-heading"
-      className="section-padding bg-[#F6F7F9] border-y border-[#E5E7EB] relative overflow-hidden"
+      className="section-padding bg-[#0B1022] relative overflow-hidden"
     >
+      {/* Ambient background shapes */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#1E88E5]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#6A2DBD]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" aria-hidden="true" />
+
       <div className="container-slp relative z-10">
+
         <SectionTitle
           label="Quiénes Somos"
           title="Tecnología e Ingeniería al servicio de su crecimiento"
           subtitle={about.intro}
           align="center"
-          className="mb-16"
+          className="mb-20"
         />
 
-        {/* Description + Capability Bars + Metrics */}
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-stretch mb-16">
-          
-          {/* Main text & values (7 cols) */}
-          <div className="lg:col-span-7 flex flex-col justify-between gap-8">
-            <div className="flex flex-col gap-4 text-[#6B7280] text-base leading-relaxed">
-              <p className="text-lg text-[#111827] font-medium leading-relaxed">
-                {about.description}
-              </p>
-              <p>
-                Trabajamos bajo principios de responsabilidad, calidad, innovación y mejora continua, garantizando soluciones tecnológicas que generan valor real para cada organización.
-              </p>
+        {/* ========== BLOCK 1: Hero Image + Description ========== */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24"
+        >
+          {/* Image with floating accent elements */}
+          <motion.div variants={scaleInVariants} className="relative">
+            <div className="relative rounded-[20px] overflow-hidden shadow-2xl border border-[#27304F]">
+              <Image
+                src="/images/about/workspace.png"
+                alt="Centro de operaciones tecnológicas SLP"
+                width={720}
+                height={480}
+                className="w-full h-auto object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#050816]/70 via-transparent to-[#6A2DBD]/20" />
             </div>
 
-            {/* Capability Bars */}
-            <div className="flex flex-col gap-4 bg-white p-6 rounded-2xl border border-[#E5E7EB] shadow-xs">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1E4ED8] flex items-center gap-2">
-                <Activity className="size-4" aria-hidden="true" />
-                Nivel de Cobertura & Capacidad Técnica
-              </span>
-
-              <div className="flex flex-col gap-3.5 pt-1">
-                {capabilities.map((item) => (
-                  <div key={item.name} className="flex flex-col gap-1.5">
-                    <div className="flex justify-between text-xs font-semibold text-[#111827]">
-                      <span>{item.name}</span>
-                      <span className="font-mono text-[#1E4ED8]">{item.value}%</span>
-                    </div>
-                    <div className="h-2 w-full rounded-full bg-[#F6F7F9] overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${item.value}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-[#1E4ED8] to-[#6D28D9] rounded-full"
-                      />
-                    </div>
-                  </div>
-                ))}
+            {/* Floating stats card — top right */}
+            <motion.div
+              initial={{ opacity: 0, x: 20, y: -20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="absolute -top-5 -right-5 lg:-right-8 bg-[#12182D] rounded-2xl shadow-xl border border-[#27304F] p-4 flex items-center gap-3 z-20"
+            >
+              <div className="flex size-11 items-center justify-center rounded-xl bg-[#18C7E7]/15 text-[#18C7E7]">
+                <TrendingUp className="size-5" />
               </div>
-            </div>
+              <div>
+                <p className="text-xs text-[#95A0C0] font-medium">Proyectos Activos</p>
+                <p className="font-heading text-xl font-black text-[#FFFFFF]">+50</p>
+              </div>
+            </motion.div>
+
+            {/* Floating badge — bottom left */}
+            <motion.div
+              initial={{ opacity: 0, x: -20, y: 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="absolute -bottom-4 -left-4 lg:-left-6 bg-gradient-to-r from-[#6A2DBD] to-[#1E88E5] text-white rounded-2xl shadow-xl p-4 flex items-center gap-3 z-20"
+            >
+              <Sparkles className="size-5 text-[#FFE4A3]" />
+              <div>
+                <p className="text-[11px] font-medium text-white/80">Innovación</p>
+                <p className="text-sm font-bold text-white">IA & Automatización</p>
+              </div>
+            </motion.div>
+
+            <div className="absolute -inset-4 border-2 border-dashed border-[#27304F]/60 rounded-[28px] -z-10 pointer-events-none" aria-hidden="true" />
+          </motion.div>
+
+          {/* Text content */}
+          <motion.div variants={containerVariants} className="flex flex-col gap-6">
+            <motion.div variants={itemVariants} className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#12182D] border border-[#27304F] px-3.5 py-1.5 text-[11px] font-bold text-[#18C7E7] uppercase tracking-wider">
+                <Zap className="size-3 text-[#D9A441]" />
+                Ingeniería de Software
+              </span>
+            </motion.div>
+
+            <motion.h3 variants={itemVariants} className="font-heading text-2xl lg:text-3xl font-bold text-[#FFFFFF] leading-tight">
+              Soluciones integrales que transforman la operación de su empresa
+            </motion.h3>
+
+            <motion.div variants={itemVariants} className="flex flex-col gap-4 text-[#D8DCE8] text-base leading-relaxed">
+              <p className="text-lg text-[#FFFFFF] font-medium">{about.description}</p>
+              <p>
+                Trabajamos bajo principios de responsabilidad, calidad, innovación y mejora continua,
+                garantizando soluciones tecnológicas que generan valor real para cada organización.
+              </p>
+            </motion.div>
 
             {/* Values badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {about.values.map((value) => (
-                <div
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-2.5 pt-2">
+              {about.values.map((value, i) => (
+                <motion.div
                   key={value}
-                  className="flex items-center gap-2 rounded-xl border border-[#E5E7EB] bg-white px-3.5 py-3 text-center justify-center shadow-xs"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.3 + i * 0.08 }}
+                  className="flex items-center gap-2 rounded-full border border-[#27304F] bg-[#12182D] px-4 py-2 hover:border-[#1E88E5] hover:bg-[#1B2340] transition-all duration-200 cursor-default"
                 >
-                  <CheckCircle2 className="size-4 shrink-0 text-[#1E4ED8]" aria-hidden="true" />
-                  <span className="text-xs font-bold text-[#111827]">{value}</span>
+                  <CheckCircle2 className="size-4 shrink-0 text-[#18C7E7]" aria-hidden="true" />
+                  <span className="text-sm font-semibold text-[#D8DCE8]">{value}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.a
+              variants={itemVariants}
+              href="#contacto"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#18C7E7] hover:text-[#1E88E5] hover:gap-3 transition-all duration-200 mt-2 group"
+            >
+              Conocer más sobre nuestro enfoque
+              <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+          </motion.div>
+        </motion.div>
+
+        {/* ========== BLOCK 2: Animated Stats Bar ========== */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-24"
+        >
+          {stats.map((stat, i) => {
+            const Icon = stat.icon
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                className="relative group flex flex-col items-center gap-3 rounded-[20px] border border-[#27304F] bg-[#12182D] p-8 text-center shadow-lg hover:border-[#1E88E5] hover:bg-[#1B2340] transition-all duration-300 overflow-hidden"
+              >
+                <div className={`flex size-12 items-center justify-center rounded-xl bg-[#050816] border border-[#27304F] ${stat.color}`}>
+                  <Icon className="size-6" aria-hidden="true" />
+                </div>
+
+                <div className={stat.color}>
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                </div>
+                <span className="text-sm font-semibold text-[#D8DCE8]">{stat.label}</span>
+              </motion.div>
+            )
+          })}
+        </motion.div>
+
+        {/* ========== BLOCK 3: Capability Bars + Innovation Image ========== */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24"
+        >
+          {/* Capability Bars */}
+          <motion.div variants={itemVariants} className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
+              <span className="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-[#18C7E7]">
+                <Activity className="size-4 text-[#D9A441]" aria-hidden="true" />
+                Capacidad Técnica & Cobertura
+              </span>
+              <h3 className="font-heading text-2xl font-bold text-[#FFFFFF]">
+                Competencias especializadas de ingeniería
+              </h3>
+            </div>
+
+            <div className="flex flex-col gap-5 bg-[#12182D] p-6 rounded-[20px] border border-[#27304F]">
+              {capabilities.map((item, i) => (
+                <div key={item.name} className="flex flex-col gap-2">
+                  <div className="flex justify-between text-sm font-bold text-[#FFFFFF]">
+                    <span>{item.name}</span>
+                    <motion.span
+                      className="font-mono text-[#18C7E7] font-bold"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                    >
+                      {item.value}%
+                    </motion.span>
+                  </div>
+                  <div className="h-3 w-full rounded-full bg-[#050816] overflow-hidden border border-[#27304F]">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${item.value}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, ease: "easeOut", delay: 0.2 + i * 0.1 }}
+                      className={`h-full bg-gradient-to-r ${item.color} rounded-full relative`}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent animate-[shimmer_2s_infinite]" />
+                    </motion.div>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Metric Highlights Card (5 cols) */}
-          <div className="lg:col-span-5">
-            <div className="slp-card p-8 h-full flex flex-col justify-between bg-white border border-[#E5E7EB] relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#1E4ED8]/5 rounded-bl-full pointer-events-none" />
-
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="size-2 rounded-full bg-[#16A34A]" />
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#6B7280]">
-                    SLP Quality Standard
-                  </span>
-                </div>
-                <h3 className="font-heading text-xl font-bold text-[#111827] mb-8">
-                  Indicadores de Compromiso e Ingeniería
-                </h3>
-
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-1 border-l-2 border-[#1E4ED8] pl-4">
-                    <span className="font-heading text-3xl font-extrabold text-[#1E4ED8]">100%</span>
-                    <span className="text-xs text-[#6B7280] font-medium">Garantía en Proyectos</span>
-                  </div>
-                  <div className="flex flex-col gap-1 border-l-2 border-[#6D28D9] pl-4">
-                    <span className="font-heading text-3xl font-extrabold text-[#6D28D9]">7+</span>
-                    <span className="text-xs text-[#6B7280] font-medium">Áreas Tecnológicas</span>
-                  </div>
-                  <div className="flex flex-col gap-1 border-l-2 border-[#1E4ED8] pl-4">
-                    <span className="font-heading text-3xl font-extrabold text-[#1E4ED8]">24/7</span>
-                    <span className="text-xs text-[#6B7280] font-medium">Soporte Continuo</span>
-                  </div>
-                  <div className="flex flex-col gap-1 border-l-2 border-[#C8A447] pl-4">
-                    <span className="font-heading text-3xl font-extrabold text-[#111827]">WCAG AA</span>
-                    <span className="text-xs text-[#6B7280] font-medium">Accesibilidad & Calidad</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-10 pt-6 border-t border-[#E5E7EB] flex items-center gap-3">
-                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#1E4ED8]/10 text-[#1E4ED8]">
-                  <ShieldCheck className="size-5" aria-hidden="true" />
-                </div>
-                <p className="text-xs text-[#6B7280] leading-relaxed">
-                  Desarrollos respaldados por estándares de ingeniería internacional y monitoreo continuo.
-                </p>
-              </div>
+          {/* Innovation Image */}
+          <motion.div variants={scaleInVariants} className="relative">
+            <div className="relative rounded-[20px] overflow-hidden shadow-2xl border border-[#27304F]">
+              <Image
+                src="/images/about/innovation.png"
+                alt="Innovación tecnológica y redes neurales IA"
+                width={720}
+                height={480}
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/70 via-transparent to-transparent" />
             </div>
-          </div>
 
-        </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="absolute -bottom-5 -right-5 lg:-right-6 bg-[#12182D] rounded-2xl shadow-xl border border-[#27304F] p-4 flex items-center gap-3 z-20"
+            >
+              <div className="flex size-11 items-center justify-center rounded-xl bg-[#6A2DBD]/20 text-[#18C7E7]">
+                <Sparkles className="size-5" />
+              </div>
+              <div>
+                <p className="text-xs text-[#95A0C0] font-medium">Tech Stack</p>
+                <p className="font-heading text-base font-bold text-[#FFFFFF]">IA · Cloud · IoT</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
-        {/* Mission & Vision Cards */}
-        <div className="grid gap-6 md:grid-cols-2">
+        {/* ========== BLOCK 4: Mission & Vision with Images ========== */}
+        <div className="grid gap-8 md:grid-cols-2">
+          {/* Mission */}
           <motion.article
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.18 }}
-            className="slp-card p-8 flex flex-col gap-4 bg-white"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="group relative flex flex-col overflow-hidden rounded-[20px] border border-[#27304F] bg-[#12182D] shadow-lg hover:border-[#1E88E5] hover:bg-[#1B2340] transition-all duration-300"
           >
-            <div className="flex items-center gap-3">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-[#1E4ED8]/10 text-[#1E4ED8]">
+            <div className="relative h-52 overflow-hidden">
+              <Image
+                src="/images/about/mission.png"
+                alt="Misión SLP - Planificación estratégica digital"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/90 via-[#050816]/30 to-transparent" />
+              <div className="absolute bottom-4 left-5 z-10">
+                <span className="text-[11px] font-mono text-[#18C7E7] uppercase font-bold tracking-wider">
+                  Propósito Técnico
+                </span>
+                <h3 className="font-heading text-2xl font-bold text-[#FFFFFF] mt-0.5">Nuestra Misión</h3>
+              </div>
+              <div className="absolute top-4 right-4 z-10 flex size-12 items-center justify-center rounded-xl bg-[#1E88E5] text-white shadow-lg">
                 <Target className="size-6" aria-hidden="true" />
               </div>
-              <div>
-                <span className="text-[10px] font-mono text-[#1E4ED8] uppercase tracking-wider">Propósito</span>
-                <h3 className="font-heading text-xl font-bold text-[#111827]">Nuestra Misión</h3>
+            </div>
+
+            <div className="flex flex-col gap-4 p-7">
+              <p className="text-sm text-[#D8DCE8] leading-relaxed">{mission}</p>
+              <div className="flex items-center gap-2 pt-2 border-t border-[#27304F]">
+                <ShieldCheck className="size-4 text-[#18C7E7]" />
+                <span className="text-xs font-semibold text-[#95A0C0]">Compromiso respaldado por contrato</span>
               </div>
             </div>
-            <p className="text-sm text-[#6B7280] leading-relaxed font-normal">{mission}</p>
           </motion.article>
 
+          {/* Vision */}
           <motion.article
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.18, delay: 0.05 }}
-            className="slp-card p-8 flex flex-col gap-4 bg-white"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="group relative flex flex-col overflow-hidden rounded-[20px] border border-[#27304F] bg-[#12182D] shadow-lg hover:border-[#1E88E5] hover:bg-[#1B2340] transition-all duration-300"
           >
-            <div className="flex items-center gap-3">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-[#6D28D9]/10 text-[#6D28D9]">
+            <div className="relative h-52 overflow-hidden">
+              <Image
+                src="/images/about/vision.png"
+                alt="Visión SLP - Infraestructura de red del futuro"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050816]/90 via-[#050816]/30 to-transparent" />
+              <div className="absolute bottom-4 left-5 z-10">
+                <span className="text-[11px] font-mono text-[#F0C96A] uppercase font-bold tracking-wider">
+                  Futuro Digital
+                </span>
+                <h3 className="font-heading text-2xl font-bold text-[#FFFFFF] mt-0.5">Nuestra Visión</h3>
+              </div>
+              <div className="absolute top-4 right-4 z-10 flex size-12 items-center justify-center rounded-xl bg-[#6A2DBD] text-white shadow-lg">
                 <Eye className="size-6" aria-hidden="true" />
               </div>
-              <div>
-                <span className="text-[10px] font-mono text-[#6D28D9] uppercase tracking-wider">Futuro</span>
-                <h3 className="font-heading text-xl font-bold text-[#111827]">Nuestra Visión</h3>
+            </div>
+
+            <div className="flex flex-col gap-4 p-7">
+              <p className="text-sm text-[#D8DCE8] leading-relaxed">{vision}</p>
+              <div className="flex items-center gap-2 pt-2 border-t border-[#27304F]">
+                <TrendingUp className="size-4 text-[#D9A441]" />
+                <span className="text-xs font-semibold text-[#95A0C0]">Transformación digital continua</span>
               </div>
             </div>
-            <p className="text-sm text-[#6B7280] leading-relaxed font-normal">{vision}</p>
           </motion.article>
         </div>
 

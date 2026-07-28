@@ -1,28 +1,32 @@
 # CONTEXT_SUMMARY.md
 # Resumen de Contexto — SLP Soluciones Informáticas
 
-**Fecha:** 2026-07-26 | **Sesión:** Implementación inicial completa
+**Fecha:** 2026-07-28 | **Sesión:** Hero Section v0.5.0 Premium (Stripe / Linear Level)
 
 ## Qué es el proyecto
-Web corporativa premium para SLP Soluciones Informáticas, empresa de tecnología dirigida por Sergio Luis Pérez Contreras (Ingeniero de Sistemas). Desarrollada en Next.js 15, React 19, TypeScript, Tailwind CSS v4, shadcn/ui y Framer Motion.
+Web corporativa premium para SLP Soluciones Informáticas (Colombia). Enfoque en desarrollo de software, IA empresarial, soporte técnico, videovigilancia IP y redes.
 
-## Qué se implementó esta sesión
-Se construyó **la web completa** desde cero sobre la estructura de carpetas ya existente:
-
-1. **Contenido** (`content/`): Todos los archivos de datos tipados (company, services, faq, blog, contact) con la información oficial del cliente.
-2. **Tipos** (`types/index.ts`): 8 interfaces TypeScript para los modelos de datos.
-3. **Design System** (`globals.css`): Paleta SLP dark-first azul/cian oklch, animaciones CSS custom, glassmorphism, grid/dot patterns.
-4. **Layout** (`layout.tsx`): Inter font, SEO completo con OG/Twitter, JSON-LD Organization schema, lang="es".
-5. **Componentes**: FadeIn, StaggerContainer, SectionTitle, Navbar (responsive, scroll-aware, WCAG AA).
-6. **10 Secciones**: Hero, About, Services, WhyChooseUs, Process, FAQ, Blog, CTA, Contact (React Hook Form + Zod), Footer.
-7. **Ensamblaje** (`page.tsx`): Todas las secciones en orden documentado.
-8. **Memoria**: PROJECT_STATE.md, CONTEXT_SUMMARY.md.
-
-## Decisiones clave
-- Dark mode por defecto (identidad tecnológica).
-- FAQ con acordeón propio (sin Radix), control total de animaciones.
-- Formulario de contacto UI-only (sin backend configurado).
-- @hookform/resolvers instalado para integración React Hook Form + Zod.
+## Cambios Realizados en la Sesión Actual (v0.5.0)
+1. **Rediseño completo de la Hero Section**:
+   - Layout 40% izquierda (textos estáticos, CTAs y métricas) y 60% derecha (escenario visual 3D dinámico).
+   - Eliminadas las imágenes estáticas/fotografías del slider.
+2. **7 Dashboards 3D Interactivos en JSX/SVG puro** (`sections/Hero/ServiceDashboards.tsx`):
+   - **Desarrollo de Software**: Editor IDE con TypeScript, autocompletado y mini terminal.
+   - **IA Software**: Interface de Chatbot RAG con análisis de datos en tiempo real.
+   - **Soporte Técnico**: Monitor de salud del servidor (CPU, RAM, discos, parches).
+   - **Videovigilancia**: Grid CCTV 4K con 4 cámaras live y escaneo.
+   - **Redes**: Mapa interactivo SVG de topología de red con nodos pulsantes.
+   - **Consultoría**: Dashboard analítico con curva SVG de ROI (+340%).
+   - **Venta de Equipos**: Ficha técnica de hardware de alto rendimiento.
+3. **Efectos Visuales Cinematográficos**:
+   - Transiciones zoom/blur/scale al cambiar de servicio.
+   - Aura de luz contextual que cambia de color dinámicamente según el servicio activo (Azul, Púrpura, Cyan, Dorado).
+   - Parallax 3D de inclinación por movimiento del mouse (`useSpring`, `rotateX/Y`).
+   - Mapeo de métricas flotantes glassmorphism personalizadas por servicio.
+   - Temporizador visual de 7 segundos con autoplay y pausa en hover.
+4. **Verificación de Calidad**:
+   - Compilación de TypeScript (`npx tsc --noEmit`): **0 errores**.
+   - Generación estática Next.js (`npm run build`): **5/5 páginas exitosas**.
 
 ## Estado actual
-🟡 Implementación completa, pendiente: verificar compilación TypeScript, probar dev server, validar Lighthouse.
+🟢 Hero Section v0.5.0 integrada con arquitectura 40/60 y 7 dashboards 3D. Sistema listo y verificado.

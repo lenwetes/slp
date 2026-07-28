@@ -37,9 +37,9 @@ export function SectionTitle({
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.18, delay }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#E5E7EB] bg-[#F6F7F9] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#1E4ED8]">
-            {/* Accent gold subtle dot per Constitution */}
-            <span className="size-1.5 rounded-full bg-[#C8A447]" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#27304F] bg-[#12182D] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#18C7E7]">
+            {/* Accent gold subtle dot */}
+            <span className="size-1.5 rounded-full bg-[#D9A441]" />
             {label}
           </span>
         </motion.div>
@@ -47,7 +47,7 @@ export function SectionTitle({
 
       <motion.h2
         className={cn(
-          "font-heading text-3xl font-bold tracking-tight text-[#111827] sm:text-4xl lg:text-5xl",
+          "font-heading text-3xl font-bold tracking-tight text-[#FFFFFF] sm:text-4xl lg:text-5xl",
           titleClassName,
         )}
         initial={{ opacity: 0, y: 12 }}
@@ -60,7 +60,7 @@ export function SectionTitle({
 
       {subtitle && (
         <motion.p
-          className="max-w-2xl text-base text-[#6B7280] sm:text-lg font-normal leading-relaxed"
+          className="max-w-2xl text-base text-[#D8DCE8] sm:text-lg font-normal leading-relaxed"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
